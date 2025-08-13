@@ -2,10 +2,19 @@ import { createRoute } from "honox/factory";
 import { generateRegistrationOptions } from "@simplewebauthn/server";
 
 // In-memory storage for demo (use a real database in production)
-const users = new Map();
-const challenges = new Map();
+// Note: グローバル変数を使うことで、全APIエンドポイント間でデータを共有
+declare global {
+  var webauthnUsers: Map<string, any>;
+  var webauthnChallenges: Map<string, string>;
+}
 
-export default createRoute(async (c) => {
+globalThis.webauthnUsers = globalThis.webauthnUsers || new Map();
+globalThis.webauthnChallenges = globalThis.webauthnChallenges || new Map();
+
+const users = globalThis.webauthnUsers;
+const challenges = globalThis.webauthnChallenges;
+
+export const POST = createRoute(async (c) => {
   if (c.req.method !== "POST") {
     return c.json({ error: "そのメソッドは使えないよ〜💦" }, 405);
   }
