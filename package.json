@@ -1,0 +1,23 @@
+{
+  "name": "honox-minimal-app",
+  "version": "1.0.0",
+  "description": "Minimal HonoX app",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "hono": "^4.6.0",
+    "honox": "^0.1.43",
+    "@simplewebauthn/server": "^9.0.0",
+    "@simplewebauthn/browser": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
+    "@hono/node-server": "^1.8.0"
+  }
+}
